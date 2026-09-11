@@ -1,0 +1,8 @@
+# Compiled binaries
+version.dll
+*.o
+*.obj
+*.log
+
+# OS artifacts
+.DS_Store
