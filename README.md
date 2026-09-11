@@ -17,6 +17,9 @@ The Japanese script was used as the baseline (since the voice acting is in Japan
 
 ## Notes
   - Text that do not appear in the dialogue box and chat logs are not changed, due to technical limitations. You can see its retranslation in the logs.
+  - Some lines will occupy the 4th row, due to them being longer than usual.
+  - This repo only contains the source code for the DLL used to inject the Re-translation. For probably legal reasons (I'm not a lawyer), I did not include the stuff I used to extract the text.
+  - Expect bugs and future updates breaking the patch (but I will be updating it regularly)
   
 ---
 
