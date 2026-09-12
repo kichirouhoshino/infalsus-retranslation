@@ -24,9 +24,10 @@ The Japanese script was used as the baseline (since the voice acting is in Japan
 ---
 
 ## How to install
-1. Extract the contexts of the zip file into the game
-2. LINUX/STEAMOS ONLY: Add "WINEDLLOVERRIDES="version=n,b" %command%" in your launch options.
-3. Run the game normally. The dialogue are patched on runtime.
+1. Download the zip file from "Releases"
+2. Extract the contexts of the zip file into the game
+3. LINUX/STEAMOS ONLY: Add "WINEDLLOVERRIDES="version=n,b" %command%" in your launch options.
+4. Run the game normally. The dialogue are patched on runtime.
 
 It should survive game updates, but any new dialogue added will need a patch update.
 
