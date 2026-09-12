@@ -12,23 +12,20 @@ The Japanese script was used as the baseline (since the voice acting is in Japan
   - Complete overhaul of the English script, fixing a plethora of issues present in lowiro's localization.
   - Remove excessive uses of emdashes, colons, and semicolons and instead replace with natural sentence structures.
   - Japanese honorifics (-san, -chan, -nee, -sensei) are intentionally preserved throughout.
-  - Mute character dialogue formatted without quotation marks to reflect text-to-speech / digital screen communication.
-  - Phone and chat app dialogues formatted cleanly without quotation marks, preserving authentic emoticons.
 
 ---
 
-## Japanese Nuances & Wordplay (Non-Spoiler)
+## Japanese Nuances (Non-Spoiler)
 - **`4.10.7.2` / Death and Summer (死と夏):** Japanese number wordplay (*goroawase*): 4 (*shi* = death), 10 (*to* = and), 7+2 (*na-tsu* = summer).
 - **Mute (無口 / ミュート):** Capitalized because it refers to a recognized social status/identity in this world, not just physical silence.
 - **Diving (潜る / ダイブ):** Written with the kanji for "submerge" (`潜る`), establishing the story's aquatic network metaphors.
 - **AARC (方舟 / アーク):** Written with the kanji for "Ark" (`方舟`), referencing a vessel built to survive a crisis.
-- **Honorifics:** Suffixes (-san, -chan, -nee, -sensei) are kept to preserve character relationships from the Japanese voice acting.
 
 ---
 
 ## Notes
   - Text that do not appear in the dialogue box and chat logs are not changed, due to technical limitations. You can see its retranslation in the logs.
-  - Some lines will occupy the 4th row, due to them being longer than usual.
+  - Some lines will occupy 4 or more rows, due to them being longer than usual. Some will be shortened to 4 rows in a later update.
   - This repo only contains the source code for the DLL used to inject the Re-translation. For probably legal reasons (I'm not a lawyer), I did not include the stuff I used to extract the text.
   - Expect bugs and future updates breaking the patch (but I will be updating it regularly)
   
