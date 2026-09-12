@@ -18,27 +18,11 @@ The Japanese script was used as the baseline (since the voice acting is in Japan
 ---
 
 ## Japanese Nuances & Wordplay (Non-Spoiler)
-
-To help readers appreciate the worldbuilding and dialogue nuances that arise from the original Japanese voice acting and script, here are a few linguistic details preserved in this translation:
-
-- **`4.10.7.2` & "Death and Summer" (*Goroawase*):**  
-  In Japanese culture, numerical wordplay (*goroawase*) assigns phonetic readings of syllables to numbers. The hacker group's tag is read:
-  - **4** (*shi*) = **死** (Death)
-  - **10** (*to*) = **と** (and)
-  - **7** (*na*) + **2** (*tsu*) = **夏** (Summer)  
-  Together, `4.10.7.2` reads phonetically as *Shi-to-Natsu* (死と夏), literally translating to **"Death and Summer"**. In the story, characters treat the numerical string and the name interchangeably based on this exact pun.
-
-- **Capitalized "Mute" (無口 / ミュート):**  
-  In the world of *In Falsus*, "Mute" is not merely a descriptive adjective for physical silence. It is a recognized social designation (written in the script with the kanji `無口` glossed as `ミュート`) chosen by individuals who renounce spoken language in a society governed by truth detection. It is capitalized throughout to reflect this distinct societal identity, contrasting with ordinary actions like "to mute notifications."
-
-- **"Diving" (潜る / ダイブ):**  
-  The script pairs the native Japanese verb `潜る` (*moguru* — to plunge into water or submerge) with the phonetic reading `ダイブ` (*daibu* — Dive). This underpins the overarching aquatic and submersion metaphors used whenever characters access virtual networks or deeper mental layers.
-
-- **AARC & The Ark (方舟 / アーク):**  
-  AARC is written in the original script with the kanji `方舟` (*hakobune* — ark, as in Noah's Ark) accompanied by the reading `アーク` (*Āku* / Ark), symbolizing a vessel intended to preserve select lives through an impending calamity.
-
-- **Japanese Honorifics:**  
-  Suffixes like *-san*, *-chan*, *-nee*, and *-sensei* are preserved because interpersonal boundaries, respect levels, and relational warmth are heavily emphasized by the Japanese voice cast.
+- **`4.10.7.2` / Death and Summer (死と夏):** Japanese number wordplay (*goroawase*): 4 (*shi* = death), 10 (*to* = and), 7+2 (*na-tsu* = summer).
+- **Mute (無口 / ミュート):** Capitalized because it refers to a recognized social status/identity in this world, not just physical silence.
+- **Diving (潜る / ダイブ):** Written with the kanji for "submerge" (`潜る`), establishing the story's aquatic network metaphors.
+- **AARC (方舟 / アーク):** Written with the kanji for "Ark" (`方舟`), referencing a vessel built to survive a crisis.
+- **Honorifics:** Suffixes (-san, -chan, -nee, -sensei) are kept to preserve character relationships from the Japanese voice acting.
 
 ---
 
