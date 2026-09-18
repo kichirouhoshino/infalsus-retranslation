@@ -2,6 +2,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include "retranslation_format.h"
+#include "miniz_tinfl.h"
 
 /* C Runtime declarations from msvcrt */
 int __cdecl _vsnprintf(char *buffer, size_t count, const char *format, va_list argptr);
@@ -12,6 +13,30 @@ int __cdecl strcmp(const char *string1, const char *string2);
 int __cdecl _stricmp(const char *string1, const char *string2);
 char* __cdecl strrchr(const char *str, int c);
 char* __cdecl strstr(const char *str, const char *strSearch);
+
+/* Windows x86_64 Stack Probe */
+void ___chkstk_ms(void);
+__asm__(
+    ".global ___chkstk_ms\n"
+    "___chkstk_ms:\n"
+    "push %rcx\n"
+    "push %rax\n"
+    "cmp $0x1000, %rax\n"
+    "lea 24(%rsp), %rcx\n"
+    "jb 2f\n"
+    "1:\n"
+    "sub $0x1000, %rcx\n"
+    "test %rcx, (%rcx)\n"
+    "sub $0x1000, %rax\n"
+    "cmp $0x1000, %rax\n"
+    "ja 1b\n"
+    "2:\n"
+    "sub %rax, %rcx\n"
+    "test %rcx, (%rcx)\n"
+    "pop %rax\n"
+    "pop %rcx\n"
+    "ret\n"
+);
 
 /* ========================================================================= */
 /* Logging                                                                   */
@@ -132,6 +157,60 @@ static bool LoadRetranslationDat(void) {
         return false;
     }
     CloseHandle(hFile);
+
+    /* Check if file is compressed with IFTC (In Falsus Translation Compressed) */
+    if (fileSize >= sizeof(IFTCHeader) && memcmp(g_DatBuffer, "IFTC", 4) == 0) {
+        const IFTCHeader* compHeader = (const IFTCHeader*)g_DatBuffer;
+        if (compHeader->version != 1 || compHeader->decomp_size < sizeof(IFTRHeader)) {
+            Log("Error: Invalid IFTC header version %u or decomp_size %u\n",
+                compHeader->version, compHeader->decomp_size);
+            VirtualFree(g_DatBuffer, 0, MEM_RELEASE);
+            g_DatBuffer = NULL;
+            return false;
+        }
+
+        DWORD expectedCompSize = compHeader->comp_size;
+        DWORD expectedDecompSize = compHeader->decomp_size;
+        if (fileSize - sizeof(IFTCHeader) < expectedCompSize) {
+            Log("Error: Truncated IFTC payload (file has %lu bytes, expected header + %lu)\n",
+                fileSize, expectedCompSize);
+            VirtualFree(g_DatBuffer, 0, MEM_RELEASE);
+            g_DatBuffer = NULL;
+            return false;
+        }
+
+        uint8_t* decompBuffer = (uint8_t*)VirtualAlloc(NULL, expectedDecompSize, MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE);
+        if (!decompBuffer) {
+            Log("Error: Failed to allocate %u bytes for decompressed translation\n", expectedDecompSize);
+            VirtualFree(g_DatBuffer, 0, MEM_RELEASE);
+            g_DatBuffer = NULL;
+            return false;
+        }
+
+        const uint8_t* compData = g_DatBuffer + sizeof(IFTCHeader);
+        size_t decompResult = tinfl_decompress_mem_to_mem(
+            decompBuffer,
+            expectedDecompSize,
+            compData,
+            expectedCompSize,
+            TINFL_FLAG_PARSE_ZLIB_HEADER
+        );
+
+        if (decompResult != expectedDecompSize) {
+            Log("Error: Decompression failed (tinfl returned %zu, expected %u)\n",
+                decompResult, expectedDecompSize);
+            VirtualFree(decompBuffer, 0, MEM_RELEASE);
+            VirtualFree(g_DatBuffer, 0, MEM_RELEASE);
+            g_DatBuffer = NULL;
+            return false;
+        }
+
+        /* Free compressed file buffer and use decompressed buffer */
+        VirtualFree(g_DatBuffer, 0, MEM_RELEASE);
+        g_DatBuffer = decompBuffer;
+        Log("Successfully decompressed retranslation.dat: %u -> %u bytes\n",
+            expectedCompSize, expectedDecompSize);
+    }
 
     g_Header = (const IFTRHeader*)g_DatBuffer;
     if (memcmp(g_Header->magic, "IFTR", 4) != 0 || g_Header->version != 1) {

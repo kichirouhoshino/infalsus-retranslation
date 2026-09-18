@@ -6,6 +6,8 @@ The goal of this re-translation is to replace lowiro's sub-par English script wi
 
 The Japanese script was used as the baseline (since the voice acting is in Japanese), with the original English translation as reference.
 
+Tested up to version 1.0.3, but should survive future updates. Steam achievements should still work normally.
+
 ---
 
 ## Changes
@@ -24,8 +26,8 @@ The Japanese script was used as the baseline (since the voice acting is in Japan
 ---
 
 ## Notes
-  - Text that do not appear in the dialogue box and chat logs are not changed, due to technical limitations. You can see its retranslation in the logs.
-  - Some lines will occupy 4 or more rows, due to them being longer than usual. Some will be shortened to 4 rows in a later update.
+  - Text that do not appear in the dialogue box and chat logs are not changed, as they are non-string assets that requires a different method of patching. You can see its retranslation in the logs (but there are some that do not match the actual text, probably in fault of lowiro's part.)
+  - Some lines will occupy the 4th row, due to them being longer than usual.
   - This repo only contains the source code for the DLL used to inject the Re-translation. For probably legal reasons (I'm not a lawyer), I did not include the stuff I used to extract the text.
   - Expect bugs and future updates breaking the patch (but I will be updating it regularly)
   
@@ -35,9 +37,17 @@ The Japanese script was used as the baseline (since the voice acting is in Japan
 1. Download the zip file from "Releases"
 2. Extract the contents of the zip file into the game
 3. LINUX/STEAMOS ONLY: Add "WINEDLLOVERRIDES="version=n,b" %command%" in your launch options.
-4. Run the game normally. The dialogue are patched on runtime.
+4. Run the game normally. The game is patched on runtime.
 
 It should survive game updates, but any new dialogue added will need a patch update.
 
 ## How to uninstall
-- Remove the files "retranslation.dat" and "version.dll"
+- Remove the files "retranslation.dat" and "version.dll".
+
+---
+
+## TODO/Wishlist:
+- An actual non-AI translation (Either I get a translator or lowiro fixes their script)
+- Translate static asset texts
+- Change font face
+- Transition to using a mod loader when it exists in the future

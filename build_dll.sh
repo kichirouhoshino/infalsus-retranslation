@@ -19,6 +19,10 @@ clang -target x86_64-w64-windows-gnu \
     -nostdlib \
     -Wl,-e,DllMain \
     version.def \
+    -DMINIZ_NO_STDIO \
+    -DMINIZ_NO_TIME \
+    -DMINIZ_NO_ARCHIVE_APIS \
+    -DMINIZ_NO_DEFLATE_APIS \
     -Isrc \
     -I"$WINE_INC_MSVCRT" \
     -I"$WINE_INC_WINDOWS" \
@@ -26,6 +30,7 @@ clang -target x86_64-w64-windows-gnu \
     -lkernel32 \
     -lmsvcrt \
     "$SRC" \
+    src/miniz_tinfl.c \
     -o "$OUT"
 
 echo "Built $OUT successfully!"

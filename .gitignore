@@ -6,3 +6,6 @@ version.dll
 
 # OS artifacts
 .DS_Store
+
+# Other stuff
+.changelogdraft

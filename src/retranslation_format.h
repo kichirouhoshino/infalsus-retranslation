@@ -13,6 +13,13 @@ typedef struct {
 } IFTRHeader;
 
 typedef struct {
+    char magic[4];          /* "IFTC" (In Falsus Translation Compressed) */
+    uint32_t version;       /* Format version = 1 */
+    uint32_t decomp_size;   /* Uncompressed size in bytes */
+    uint32_t comp_size;     /* Compressed payload size in bytes */
+} IFTCHeader;
+
+typedef struct {
     uint16_t scene_id;      /* Scene number (1 - 236) */
     uint16_t line_id;       /* Line number (1 - 279) */
     uint32_t str_offset;    /* Byte offset from start of string pool */
